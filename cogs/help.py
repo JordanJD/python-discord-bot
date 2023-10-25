@@ -1,4 +1,4 @@
-""" Module to control discord bot and commands"""
+"""Module manages Cog for help command"""
 import discord
 from discord.ext import commands
 

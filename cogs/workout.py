@@ -1,5 +1,4 @@
-""" Module to control discord bot and commands"""
-import discord
+"""Module manages Cog for workout parsing"""
 from discord.ext import commands
 
 class WorkoutCog(commands.Cog):
