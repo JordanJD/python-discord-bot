@@ -3,9 +3,12 @@ import discord
 import requests
 from discord.ext import commands
 from dotenv import dotenv_values
+from cogs.help import HelpCog
+from cogs.workout import WorkoutCog
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="/", intents=intents)
+bot.remove_command("help")
 
 CHAT_GPT_BASE_URL = 'https://chatgpt-best-price.p.rapidapi.com/v1'
 COMPLETIONS_URL = 'https://chatgpt-best-price.p.rapidapi.com/v1/chat/completions'
@@ -17,12 +20,9 @@ headers = {
 @bot.event
 async def on_ready():
     """function that runs on successful bot start"""
+    await bot.add_cog(HelpCog(bot))
+    await bot.add_cog(WorkoutCog(bot))
     print("online")
-
-@bot.command(name='workout')
-async def workout(context):
-    """Main bot command that will be used to parse workouts"""
-    await context.send()
 
 @bot.command(name="ping")
 async def ping(context):
